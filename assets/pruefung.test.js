@@ -10,7 +10,7 @@ const code = fs.readFileSync(path.join(__dirname, "pruefung.js"), "utf8");
 
 const sandbox = {
   window: {},
-  document: { addEventListener: function () {} },
+  document: { readyState: "loading", addEventListener: function () {} },
   setInterval: function () { return 0; },
   clearInterval: function () {},
   navigator: {},

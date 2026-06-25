@@ -8,12 +8,15 @@
   var DURATION = 20 * 60;        // PARAMETER (Schritt 6): Sekunden, an den Umfang angepasst (16 Fragen ≈ 20 min)
   var remaining = DURATION;
   var timerId = null;
+  var started = false;            // Test-Start-Gate: Timer läuft erst nach „Test starten"
   var submitted = false;
+  var currentResultTs = null;     // Zeitstempel des laufenden Versuchs (für Finalisierung)
   var RESULT_KEY = "pug:probe-sa:results";
   /* PARAMETER (Modul code-ki-bewertung): offene Aufgaben des Prüfungsteils.
      []  ⇒ reiner Auswahlteil (kein offener Teil, kein Open-Panel). */
   var OPEN_TASKS = [];
   var OPEN_MAX = OPEN_TASKS.reduce(function (s, t) { return s + t.max; }, 0);
+  var hasOpen = OPEN_TASKS.length > 0;
 
   function readNumber(value) {
     if (typeof value === "string") value = value.replace(",", ".");
@@ -172,7 +175,23 @@
 
     var used = DURATION - Math.max(0, remaining);
     showResult(ok, total, used, auto);
-    saveResult({ score: ok, total: total, seconds: used, ts: Date.now() });
+    currentResultTs = Date.now();
+    if (hasOpen) {
+      /* Auswahlteil abgegeben — Endnote folgt nach dem Eintragen des offenen Teils. */
+      saveResult({
+        ts: currentResultTs, score: ok, total: total, seconds: used,
+        openScore: null, openMax: OPEN_MAX, totalScore: null, totalMax: total + OPEN_MAX,
+        percentage: null, grade: null, gradeLabel: null, finalized: false
+      });
+    } else {
+      /* Reiner Auswahlteil: Ergebnis ist sofort vollständig. */
+      var r = calculateExamResult(ok, total, 0, 0);
+      saveResult({
+        ts: currentResultTs, score: ok, total: total, seconds: used,
+        openScore: 0, openMax: 0, totalScore: r.totalScore, totalMax: r.totalMax,
+        percentage: r.percentage, grade: r.grade, gradeLabel: r.gradeLabel, finalized: true
+      });
+    }
     renderBest();
     var sb = document.getElementById("submit-btn");
     if (sb) { sb.disabled = true; sb.textContent = "Abgegeben"; }
@@ -192,7 +211,35 @@
       "<p class='score-help'>Trage nach der KI-Bewertung die Punkte der offenen Aufgaben ein. Gesamtpunktzahl, Prozentzahl und Note werden direkt berechnet.</p>" +
       "<div class='open-score-grid'>" + fields + "</div>" +
       "<div id='final-score-summary' class='final-score-summary' aria-live='polite'></div>" +
+      "<div class='open-score-actions' style='margin-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap'>" +
+        "<button class='btn primary' id='save-final' type='button'>Endergebnis (mit Note) im Verlauf speichern</button>" +
+        "<span id='save-final-status' class='save-status' aria-live='polite' style='color:var(--accent-2);font-size:.85rem'></span>" +
+      "</div>" +
     "</div>";
+  }
+
+  function finalizeResult(choiceScore, choiceTotal) {
+    if (currentResultTs === null) return;
+    var result = calculateExamResult(choiceScore, choiceTotal, readOpenScoreTotal(), OPEN_MAX);
+    var arr = getResults();
+    var found = false;
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i].ts === currentResultTs) {
+        arr[i].openScore = result.openScore;
+        arr[i].openMax = result.openMax;
+        arr[i].totalScore = result.totalScore;
+        arr[i].totalMax = result.totalMax;
+        arr[i].percentage = result.percentage;
+        arr[i].grade = result.grade;
+        arr[i].gradeLabel = result.gradeLabel;
+        arr[i].finalized = true;
+        found = true;
+        break;
+      }
+    }
+    if (!found) return;
+    try { localStorage.setItem(RESULT_KEY, JSON.stringify(arr)); } catch (e) {}
+    renderBest();
   }
 
   function readOpenScoreTotal() {
@@ -227,6 +274,12 @@
       });
     });
     updateFinalScore(choiceScore, choiceTotal);
+    var saveBtn = document.getElementById("save-final");
+    if (saveBtn) saveBtn.addEventListener("click", function () {
+      finalizeResult(choiceScore, choiceTotal);
+      var st = document.getElementById("save-final-status");
+      if (st) st.textContent = "✓ Note & Punkte im Verlauf gespeichert";
+    });
   }
 
   function showResult(ok, total, used, auto) {
@@ -255,14 +308,21 @@
     var rows = res.slice(-5).reverse().map(function (r) {
       var d = new Date(r.ts);
       var datum = d.toLocaleDateString() + " " + d.toLocaleTimeString().slice(0, 5);
-      var pct = r.total ? Math.round(r.score / r.total * 100) : 0;
-      return "<tr><td>" + datum + "</td><td>" + r.score + "/" + r.total +
-             "</td><td>" + pct + " %</td><td>" + fmt(r.seconds) + "</td></tr>";
+      var auswahl = r.score + "/" + r.total;
+      var offen = (r.openScore !== null && r.openScore !== undefined)
+        ? formatPoints(r.openScore) + "/" + (r.openMax || OPEN_MAX) : "—";
+      var note = (r.grade !== null && r.grade !== undefined) ? r.grade : "—";
+      var pct = (r.percentage !== null && r.percentage !== undefined)
+        ? formatPercent(r.percentage) + " %"
+        : (r.total ? Math.round(r.score / r.total * 100) + " %*" : "0 %");
+      return "<tr><td>" + datum + "</td><td>" + auswahl + "</td><td>" + offen +
+             "</td><td>" + note + "</td><td>" + pct + "</td><td>" + fmt(r.seconds) + "</td></tr>";
     }).join("");
     box.innerHTML =
       "<span class='rubric-label'>Deine letzten Versuche</span>" +
-      "<div class='tbl-wrap'><table class='ref'><tr><th>Datum</th><th>Punkte</th><th>Quote</th><th>Zeit</th></tr>" +
+      "<div class='tbl-wrap'><table class='ref'><tr><th>Datum</th><th>Auswahl</th><th>Offen</th><th>Note</th><th>Quote</th><th>Zeit</th></tr>" +
       rows + "</table></div>" +
+      (hasOpen ? "<p class='score-help'>* nur Auswahlteil — das Endergebnis mit Note erscheint nach dem Speichern.</p>" : "") +
       "<button class='btn' id='clear-history' type='button'>Verlauf löschen</button>";
     var cl = document.getElementById("clear-history");
     if (cl) cl.addEventListener("click", function () {
@@ -301,7 +361,7 @@
       if (!code.trim()) code = "(keine Eingabe)";
       blocks.push("=== Aufgabe " + (i + 1) + " ===\n" + t.replace(/\{\{CODE\}\}/g, code).trim());
     });
-    return "Du bist Informatik-Lehrkraft. Bewerte den offenen Teil meiner Probe-SA (Fach PuG) " +
+    return "Du bist Lehrkraft. Bewerte den offenen Teil meiner Probe-SA (Fach PuG) " +
       "und vergib pro Aufgabe Punkte streng nach den jeweils genannten Kriterien. Nenne je Aufgabe " +
       "die erreichten Punkte mit kurzer Begründung und am Ende die Gesamtpunktzahl des offenen Teils.\n\n" +
       blocks.join("\n\n");
@@ -322,16 +382,38 @@
     if (co) co.addEventListener("click", function () { copyText(buildOpenPrompt(), co); });
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    initSelect();
-    initOpen();
+  /* ---- Test-Start-Gate: Aufgaben einblenden + Countdown starten ---- */
+  function startExam() {
+    if (started) return;
+    started = true;
+    var content = document.getElementById("exam-content");
+    if (content) content.hidden = false;
+    var gate = document.getElementById("exam-gate");
+    if (gate) gate.hidden = true;
     var el = document.getElementById("timer");
     if (el) el.textContent = fmt(remaining);
     timerId = setInterval(tick, 1000);
+  }
+
+  function init() {
+    initSelect();
+    initOpen();
+
+    var startBtn = document.getElementById("start-btn");
+    if (startBtn) startBtn.addEventListener("click", startExam);
 
     var sb = document.getElementById("submit-btn");
     if (sb) sb.addEventListener("click", function () { doSubmit(false); });
 
     renderBest();
-  });
+
+    // Fallback: ohne Start-Gate (z. B. ältere Seite) sofort starten
+    if (!startBtn) startExam();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 })();

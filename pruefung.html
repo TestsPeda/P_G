@@ -32,6 +32,17 @@
       Erst beim Abgeben wird ausgewertet, anschließend siehst du alle Musterlösungen.</p>
   </section>
 
+  <div class="exam-gate" id="exam-gate">
+    <div class="note">
+      <span class="lbl">Vor dem Start lesen</span>
+      <p>Mit „Test starten“ werden die Aufgaben sichtbar und der Countdown (<strong>20 Minuten</strong>) beginnt.
+      Beim Abgeben wird der Auswahlteil ausgewertet, die Quote berechnet und über den IHK-Notenschlüssel eine Note bestimmt.
+      Läuft die Zeit ab, wird automatisch abgegeben. Ergebnisse werden lokal gespeichert.</p>
+    </div>
+    <div class="controls"><button class="btn primary" id="start-btn" type="button">Test starten</button></div>
+  </div>
+
+  <div id="exam-content" hidden>
   <div class="exam-bar">
     <span class="lbl">Verbleibend</span><span class="clock" id="timer">20:00</span>
     <div class="spacer"></div>
@@ -238,14 +249,15 @@
       </ul></div>
     <div class="q-solution" hidden><span class="sol-label">Lösung</span><p>Die Jungen finanzieren die Renten der Älteren. Probleme: demografischer Wandel, steigende Lebenserwartung.</p></div>
   </article>
+  </div><!-- /exam-content -->
 
   <div id="history" hidden></div>
 
   <div class="note">
     <span class="lbl">So funktioniert die Bewertung</span>
     <p>Jede richtige Auswahlfrage zählt 1 Punkt (16 Punkte gesamt). Beim Abgeben (oder bei Zeitablauf) wird automatisch
-      ausgewertet, die Quote in Prozent ermittelt und über den <strong>IHK-Notenschlüssel</strong> eine Note bestimmt. Deine letzten Versuche
-      werden lokal gespeichert. Diese Probe-SA umfasst ausschließlich die <strong>Sozialversicherungen</strong>.</p>
+      ausgewertet, die Quote in Prozent ermittelt und über den <strong>IHK-Notenschlüssel</strong> sofort eine Note bestimmt. Deine letzten Versuche
+      (mit Note) werden lokal gespeichert. Diese Probe-SA umfasst ausschließlich die <strong>Sozialversicherungen</strong>.</p>
   </div>
 </div></main>
 <footer class="foot"><div class="wrap"><span class="mono">PuG · Probe-SA — Sozialversicherungen · 16 Fragen · ca. 20 min</span></div></footer>
