@@ -1,0 +1,33 @@
+/* Druck-/PDF-Ansicht — alle Seiten.
+   Blendet Bedienelemente aus, deckt ALLE Lösungen auf (zum Lernen auf Papier),
+   und sorgt für saubere Umbrüche. Wird zusätzlich zu style.css eingebunden. */
+@media print {
+  :root { --shadow: none; }
+
+  body { background: #fff !important; background-image: none !important; color: #000; }
+
+  /* Bedienelemente und Navigation ausblenden */
+  .topbar, .controls, .pager, .gal-nav, .foot,
+  .q-foot, .q-reveal, .q-check, .q-copyprompt, .code-hint { display: none !important; }
+
+  main { padding-bottom: 0; }
+  .wrap { max-width: 100%; padding: 0 8mm; }
+
+  /* Alle Lösungen sichtbar machen (auch normalerweise eingeklappte) */
+  .q-solution[hidden], .q-solution { display: block !important; }
+
+  /* Karten nicht über Seitenränder zerreißen */
+  .q, figure.diagram, .learn-card, .topic-card { break-inside: avoid; page-break-inside: avoid; }
+  .sec-head { break-after: avoid; page-break-after: avoid; }
+
+  /* Eingabefelder als leere Linien zum Beschriften drucken */
+  .code-input { min-height: 120px; border: 1px solid #999; background: #fff; }
+
+  /* Diagramme klar in Schwarz/Weiß */
+  figure.diagram { background: #fff !important; border: 1px solid #ccc; }
+  .q-solution pre { background: #f4f4f4 !important; border: 1px solid #ccc; }
+  .q-solution pre code { color: #111 !important; }
+
+  a[href]::after { content: ""; } /* keine URL-Anhänge */
+  @page { margin: 14mm 10mm; }
+}
