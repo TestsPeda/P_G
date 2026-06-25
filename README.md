@@ -1,5 +1,7 @@
 # PuG · Ausbildung & Arbeitsrecht — Selbsttest-Website
 
+🌐 Live über GitHub Pages: https://testspeda.github.io/P_G/
+
 Eine eigenständige, statische Lern- und Test-Website zum Fach **Politik und Gesellschaft (PuG)**,
 Klasse WIT10C, BSZ Wiesau. Kein Build-Schritt, keine externen Abhängigkeiten — einfach
 `index.html` im Browser öffnen. Funktioniert offline und auf GitHub Pages.
