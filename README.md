@@ -2,8 +2,8 @@
 
 🌐 Live über GitHub Pages: https://testspeda.github.io/P_G/
 
-Eine eigenständige, statische Lern- und Test-Website zum Fach **Politik und Gesellschaft (PuG)**,
-Klasse WIT10C, BSZ Wiesau. Kein Build-Schritt, keine externen Abhängigkeiten — einfach
+Eine eigenständige, statische Lern- und Test-Website zum Fach **Politik und Gesellschaft (PuG)**.
+Kein Build-Schritt, keine externen Abhängigkeiten — einfach
 `index.html` im Browser öffnen. Funktioniert offline und auf GitHub Pages.
 
 ## Themen (6)
@@ -31,10 +31,3 @@ Klasse WIT10C, BSZ Wiesau. Kein Build-Schritt, keine externen Abhängigkeiten �
   Lösungen sichtbar.
 - **Probe-SA:** Countdown läuft beim Laden; „Abgeben & auswerten“ bewertet den Auswahlteil, zeigt die
   Note nach IHK-Schlüssel und speichert den Versuch.
-
-## Hinweis
-
-Diese Website dient ausschließlich **Lernzwecken**. Die Inhalte wurden **KI-gestützt** aus dem
-Quell-/Übungsblattmaterial des Workspaces neu formuliert (kein wörtliches Zitat). Maßgeblich für
-Prüfungen ist stets der im Unterricht behandelte Stoff; **keine Gewähr** für Vollständigkeit oder
-Aktualität der gesetzlichen Angaben (Stand 2026).

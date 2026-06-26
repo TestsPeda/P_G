@@ -24,7 +24,7 @@ const S = sandbox.window.ProbeSaScoring;
 assert.ok(S && typeof S.getIhkGrade === "function", "ProbeSaScoring.getIhkGrade fehlt");
 assert.ok(typeof S.calculateExamResult === "function", "ProbeSaScoring.calculateExamResult fehlt");
 
-/* ---- Notenschlüssel (IHK) ---- */
+/* ---- Notenschlüssel ---- */
 assert.equal(S.getIhkGrade(100).grade, 1);
 assert.equal(S.getIhkGrade(92).grade, 1);
 assert.equal(S.getIhkGrade(91.9).grade, 2);

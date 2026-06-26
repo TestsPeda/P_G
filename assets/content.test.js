@@ -1,5 +1,5 @@
 /* Inhalts-Self-Test (Node, ohne Abhängigkeiten).
-   Prüft, dass zentrale Inhalte, Diagramme, Quellen-Tags und die Verdrahtung
+   Prüft, dass zentrale Inhalte, Diagramme, Themen-Tags und die Verdrahtung
    tatsächlich in den generierten HTML-Dateien vorkommen.
    Ausführen:  node assets/content.test.js  (im Zielordner) */
 const assert = require("node:assert/strict");
@@ -51,7 +51,7 @@ has("01-duales-system.html", "Berufsvorbereitungsjahr");
 has("01-duales-system.html", "Berufsgrundbildungsjahr");
 has("01-duales-system.html", "Einstiegsqualifizierung");
 has("01-duales-system.html", "Duales System — zwei Lernorte"); // Diagramm
-has("01-duales-system.html", 'class="q-src">AB Duales System');  // Quellen-Tag
+has("01-duales-system.html", 'class="q-src">Duales System');  // Themen-Tag
 
 /* ---- Thema 02 Berufsausbildungsvertrag ---- */
 has("02-ausbildungsvertrag.html", "Berufsausbildungsvertrag");

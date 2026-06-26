@@ -47,7 +47,7 @@
     return n.toFixed(2).replace(/0+$/, "").replace(/\.$/, "").replace(".", ",");
   }
 
-  /* PARAMETER: Notenschlüssel (Standard IHK-Regensburg) */
+  /* PARAMETER: Notenschlüssel (Standardschwellen) */
   function getIhkGrade(percent) {
     var pct = clampScore(percent, 100);
     if (pct >= 92) return { grade: 1, label: "sehr gut", range: "92 bis 100 %" };
