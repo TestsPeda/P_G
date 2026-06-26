@@ -429,3 +429,54 @@ table.ref code, table.ref .mono { font-family: var(--font-mono); font-size: .9em
   .open-score-field { grid-template-columns: 1fr 70px auto; }
   .open-score-field input { width: 70px; }
 }
+
+/* ---------- offene Aufgaben: Typ-Badges -------------------------------- */
+.q-type.freitext { color: var(--accent-2); border-color: var(--accent-2-tint); background: var(--accent-2-tint); }
+.q-type.tabelle  { color: var(--gold); border-color: #F0E0B0; background: #FEF8E8; }
+
+/* ---------- offene Aufgaben: Beschriftung + Textarea ------------------- */
+.open-label {
+  display: block;
+  font-family: var(--font-mono); font-size: .76rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); margin: 10px 0 5px;
+}
+.open-textarea {
+  width: 100%; min-height: 110px; padding: 12px 14px;
+  border: 1px solid var(--line-strong); border-radius: var(--radius);
+  font-family: var(--font-body); font-size: .97rem; color: var(--ink);
+  background: var(--surface); resize: vertical; line-height: 1.6;
+  transition: border-color .15s, box-shadow .15s;
+}
+.open-textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-tint); }
+.open-textarea:disabled { background: var(--surface-2); color: var(--muted); cursor: not-allowed; resize: none; }
+
+/* ---------- offene Aufgaben: Tabellen-Frage ----------------------------- */
+.open-table-wrap { overflow-x: auto; margin: 10px 0 14px; }
+.open-table .tbl-fixed {
+  font-weight: 600; white-space: nowrap;
+  background: var(--surface-2); min-width: 160px;
+}
+.tbl-input {
+  width: 100%; min-width: 110px; padding: 7px 9px;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  font-family: var(--font-body); font-size: .88rem; color: var(--ink);
+  background: var(--surface); transition: border-color .15s;
+}
+.tbl-input:focus { outline: none; border-color: var(--accent); background: #fff; }
+.tbl-input:disabled { background: var(--surface-2); color: var(--muted); cursor: not-allowed; }
+
+/* ---------- KI-Prompt-Hint-Box ----------------------------------------- */
+.ki-hint { margin: 26px 0; }
+
+/* ---------- Kopier-Button Flash-Effekt ---------------------------------- */
+.btn.copied,
+.btn.copied:hover {
+  background: var(--accent-2) !important;
+  border-color: var(--accent-2) !important;
+  color: #fff !important;
+}
+
+@media (max-width: 620px) {
+  .open-table .tbl-fixed { min-width: 110px; font-size: .85rem; }
+  .tbl-input { min-width: 80px; font-size: .82rem; }
+}

@@ -27,16 +27,18 @@
   <section class="hero">
     <p class="eyebrow">Prüfungssimulation</p>
     <h1>Probe-SA: Sozialversicherungen</h1>
-    <p class="lede">Vereinbarungsgemäß deckt diese Probe-Schulaufgabe nur das Thema <strong>Sozialversicherungen</strong> ab:
-      <strong>16 Auswahlfragen</strong> (je 1 Punkt, insgesamt 16 Punkte) mit einer Bearbeitungszeit von <strong>ca. 20 Minuten</strong>.
-      Erst beim Abgeben wird ausgewertet, anschließend siehst du alle Musterlösungen.</p>
+    <p class="lede">Thema: <strong>Sozialversicherungen</strong> —
+      <strong>16 Auswahlfragen</strong> (16&nbsp;P) plus <strong>3 offene Aufgaben</strong> mit KI-Bewertung (10&nbsp;P) = <strong>26&nbsp;Punkte</strong> gesamt.
+      Bearbeitungszeit: <strong>ca.&nbsp;30&nbsp;Minuten</strong>.
+      Erst beim Abgeben wird der Auswahlteil ausgewertet; die offenen Antworten kopierst du danach in eine KI-Anwendung.</p>
   </section>
 
   <div class="exam-gate" id="exam-gate">
     <div class="note">
       <span class="lbl">Vor dem Start lesen</span>
-      <p>Mit „Test starten“ werden die Aufgaben sichtbar und der Countdown (<strong>20 Minuten</strong>) beginnt.
-      Beim Abgeben wird der Auswahlteil ausgewertet, die Quote berechnet und über den IHK-Notenschlüssel eine Note bestimmt.
+      <p>Mit „Test starten” werden die Aufgaben sichtbar und der Countdown (<strong>30 Minuten</strong>) beginnt.
+      Beim Abgeben wird der Auswahlteil (A–C) automatisch ausgewertet. Die offenen Antworten (D) bleiben editierbar —
+      kopiere sie per KI-Prompt in eine KI-Anwendung und trage die vergebenen Punkte anschließend ins Formular ein.
       Läuft die Zeit ab, wird automatisch abgegeben. Ergebnisse werden lokal gespeichert.</p>
     </div>
     <div class="controls"><button class="btn primary" id="start-btn" type="button">Test starten</button></div>
@@ -249,18 +251,202 @@
       </ul></div>
     <div class="q-solution" hidden><span class="sol-label">Lösung</span><p>Die Jungen finanzieren die Renten der Älteren. Probleme: demografischer Wandel, steigende Lebenserwartung.</p></div>
   </article>
+  <!-- ===== Abschnitt D: Offene Aufgaben mit KI-Bewertung ===== -->
+  <div class="sec-head"><span class="ix">D</span><h2>Wissen anwenden</h2></div>
+  <p class="sec-sub">Schreibe deine Antworten in die Textfelder bzw. die Tabelle. Über den jeweiligen <strong>„KI-Prompt"</strong>-Button oder den globalen Button unten kannst du eine fertige Bewertungsanfrage in die Zwischenablage kopieren und in eine KI (z.&nbsp;B. Claude) einfügen.</p>
+
+  <div class="ki-hint note">
+    <span class="lbl">KI-Bewertung des offenen Teils</span>
+    <p>Beantworte alle drei Aufgaben (17–19), klicke dann auf <strong>„Alle kopieren"</strong> — der vollständige Bewertungsprompt für alle offenen Aufgaben landet in der Zwischenablage. Alternativ kopierst du jede Aufgabe einzeln. Füge den Prompt in eine KI ein, übertrage die Punkte anschließend ins Ergebnisformular nach dem Abgeben.</p>
+    <div class="controls" style="margin-bottom:0">
+      <button class="btn primary" id="copy-open" type="button">Alle offenen Aufgaben kopieren</button>
+    </div>
+  </div>
+
+  <!-- Q17: Solidaritätsprinzip — Freitext, 2 P -->
+  <article class="q open-q">
+    <div class="q-head">
+      <span class="q-num">17</span>
+      <span class="q-type freitext">Freitext</span>
+      <span class="q-pts">2 P</span>
+    </div>
+    <div class="q-body">
+      <p class="q-text"><strong>Solidaritätsprinzip.</strong> Erkläre das Solidaritätsprinzip in eigenen Worten und nenne ein konkretes Beispiel aus dem deutschen Sozialversicherungssystem.</p>
+      <label class="open-label" for="ans-17">Deine Antwort:</label>
+      <textarea class="code-input open-textarea" id="ans-17" rows="5" placeholder="Schreibe hier deine Antwort …"></textarea>
+      <template class="prompt-tpl">Aufgabe 17 – Solidaritätsprinzip (max. 2 Punkte)
+
+Aufgabenstellung: Erkläre das Solidaritätsprinzip in eigenen Worten und nenne ein konkretes Beispiel aus dem deutschen Sozialversicherungssystem.
+
+Bewertungskriterien:
+• 1 Punkt: Korrekte Erklärung (alle zahlen gemeinsam ein; Leistungen werden unabhängig vom individuellen Beitrag gewährt; Starke stützen Schwache).
+• 1 Punkt: Passendes, konkretes Beispiel mit Bezug zur Sozialversicherung (z. B. Krankenversicherung: Gesunde zahlen mit, ohne dieselbe Leistung zu beanspruchen).
+
+Antwort des Schülers:
+{{CODE}}</template>
+    </div>
+    <div class="q-foot">
+      <button class="btn q-copy-single" type="button">KI-Prompt kopieren</button>
+      <button class="btn q-reveal" type="button" aria-expanded="false">Musterlösung anzeigen</button>
+    </div>
+    <div class="q-solution" hidden>
+      <span class="sol-label">Musterlösung</span>
+      <p><strong>Solidaritätsprinzip:</strong> Alle Versicherten zahlen gemeinsam in einen Topf ein. Die Leistungen richten sich nach dem Bedarf – nicht nach der Höhe des eingezahlten Beitrags. Starke (Gesunde, Gutverdienende) stützen Schwache (Kranke, Geringverdiener).</p>
+      <p><strong>Beispiel:</strong> In der gesetzlichen Krankenversicherung zahlen auch gesunde Menschen Beiträge, erhalten aber nur bei Bedarf Leistungen. Chronisch Kranke beziehen dagegen umfangreiche Leistungen, ohne höhere Beiträge zu leisten.</p>
+      <ul class="rubric">
+        <li>Erklärung: gemeinsames Einzahlen, bedarfsabhängige Leistung → 1 P</li>
+        <li>Konkretes Beispiel mit Bezug zur Sozialversicherung → 1 P</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- Q18: BBG vs. VPG — Freitext, 3 P -->
+  <article class="q open-q">
+    <div class="q-head">
+      <span class="q-num">18</span>
+      <span class="q-type freitext">Freitext</span>
+      <span class="q-pts">3 P</span>
+    </div>
+    <div class="q-body">
+      <p class="q-text"><strong>BBG und VPG.</strong> Erkläre den Unterschied zwischen der <em>Beitragsbemessungsgrenze (BBG)</em> und der <em>Versicherungspflichtgrenze (VPG)</em>. Welche Konsequenz hat es, wenn ein Arbeitnehmer dauerhaft über der VPG verdient?</p>
+      <label class="open-label" for="ans-18">Deine Antwort:</label>
+      <textarea class="code-input open-textarea" id="ans-18" rows="6" placeholder="Schreibe hier deine Antwort …"></textarea>
+      <template class="prompt-tpl">Aufgabe 18 – Beitragsbemessungsgrenze vs. Versicherungspflichtgrenze (max. 3 Punkte)
+
+Aufgabenstellung: Erkläre den Unterschied zwischen der Beitragsbemessungsgrenze (BBG) und der Versicherungspflichtgrenze (VPG). Welche Konsequenz hat es, wenn ein Arbeitnehmer dauerhaft über der VPG verdient?
+
+Bewertungskriterien:
+• 1 Punkt: BBG korrekt erklärt (Einkommensanteil, bis zu dem Beiträge berechnet werden; Einkommen darüber ist beitragsfrei; 2026 KV/PV: 5.812,50 €/Monat).
+• 1 Punkt: VPG korrekt erklärt (Schwelle, ab der man das gesetzliche Krankenversicherungssystem verlassen darf; 2026: 6.450 €/Monat).
+• 1 Punkt: Konsequenz der VPG-Überschreitung (Wahlfreiheit: gesetzlich bleiben ODER in die private KV wechseln).
+
+Antwort des Schülers:
+{{CODE}}</template>
+    </div>
+    <div class="q-foot">
+      <button class="btn q-copy-single" type="button">KI-Prompt kopieren</button>
+      <button class="btn q-reveal" type="button" aria-expanded="false">Musterlösung anzeigen</button>
+    </div>
+    <div class="q-solution" hidden>
+      <span class="sol-label">Musterlösung</span>
+      <p><strong>Beitragsbemessungsgrenze (BBG):</strong> Bis zu diesem Betrag wird das Einkommen zur Berechnung der Sozialversicherungsbeiträge herangezogen. Einkommensanteile über der BBG sind beitragsfrei. 2026 KV/PV: 5.812,50 €/Monat; RV/ALV: 8.050 €/Monat.</p>
+      <p><strong>Versicherungspflichtgrenze (VPG):</strong> Wer dauerhaft über dieser Grenze verdient (2026: 6.450 €/Monat), kann aus der gesetzlichen Krankenversicherung austreten.</p>
+      <p><strong>Konsequenz:</strong> Der Arbeitnehmer hat die Wahl — er kann in der gesetzlichen KV bleiben oder in eine private Krankenversicherung (PKV) wechseln.</p>
+      <ul class="rubric">
+        <li>BBG: Deckelung der beitragspflichtigen Grundlage → 1 P</li>
+        <li>VPG: Austritt aus der gesetzlichen KV möglich → 1 P</li>
+        <li>Konsequenz: Wahlmöglichkeit GKV / PKV → 1 P</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- Q19: Fünf-Säulen-Tabelle — Tabelle, 5 P -->
+  <article class="q open-q">
+    <div class="q-head">
+      <span class="q-num">19</span>
+      <span class="q-type tabelle">Tabelle</span>
+      <span class="q-pts">5 P</span>
+    </div>
+    <div class="q-body">
+      <p class="q-text"><strong>Fünf Säulen der Sozialversicherung.</strong> Vervollständige die Tabelle: Trage für jede Versicherung den Träger, die Finanzierung (wer zahlt?) und eine typische Leistung ein. (1 Punkt je vollständig korrekte Zeile.)</p>
+      <div class="open-table-wrap">
+        <table class="ref open-table" id="table-19">
+          <thead>
+            <tr>
+              <th>Versicherung</th>
+              <th>Träger</th>
+              <th>Finanzierung</th>
+              <th>Typische Leistung</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tbl-fixed">Krankenversicherung</td>
+              <td><input class="tbl-input" data-row="0" data-col="0" type="text" placeholder="Träger …" autocomplete="off"></td>
+              <td><input class="tbl-input" data-row="0" data-col="1" type="text" placeholder="Wer zahlt? …" autocomplete="off"></td>
+              <td><input class="tbl-input" data-row="0" data-col="2" type="text" placeholder="Leistung …" autocomplete="off"></td>
+            </tr>
+            <tr>
+              <td class="tbl-fixed">Unfallversicherung</td>
+              <td><input class="tbl-input" data-row="1" data-col="0" type="text" placeholder="Träger …" autocomplete="off"></td>
+              <td><input class="tbl-input" data-row="1" data-col="1" type="text" placeholder="Wer zahlt? …" autocomplete="off"></td>
+              <td><input class="tbl-input" data-row="1" data-col="2" type="text" placeholder="Leistung …" autocomplete="off"></td>
+            </tr>
+            <tr>
+              <td class="tbl-fixed">Rentenversicherung</td>
+              <td><input class="tbl-input" data-row="2" data-col="0" type="text" placeholder="Träger …" autocomplete="off"></td>
+              <td><input class="tbl-input" data-row="2" data-col="1" type="text" placeholder="Wer zahlt? …" autocomplete="off"></td>
+              <td><input class="tbl-input" data-row="2" data-col="2" type="text" placeholder="Leistung …" autocomplete="off"></td>
+            </tr>
+            <tr>
+              <td class="tbl-fixed">Arbeitslosenversicherung</td>
+              <td><input class="tbl-input" data-row="3" data-col="0" type="text" placeholder="Träger …" autocomplete="off"></td>
+              <td><input class="tbl-input" data-row="3" data-col="1" type="text" placeholder="Wer zahlt? …" autocomplete="off"></td>
+              <td><input class="tbl-input" data-row="3" data-col="2" type="text" placeholder="Leistung …" autocomplete="off"></td>
+            </tr>
+            <tr>
+              <td class="tbl-fixed">Pflegeversicherung</td>
+              <td><input class="tbl-input" data-row="4" data-col="0" type="text" placeholder="Träger …" autocomplete="off"></td>
+              <td><input class="tbl-input" data-row="4" data-col="1" type="text" placeholder="Wer zahlt? …" autocomplete="off"></td>
+              <td><input class="tbl-input" data-row="4" data-col="2" type="text" placeholder="Leistung …" autocomplete="off"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Versteckte textarea — wird von syncTableToTextarea vor dem Kopieren befüllt -->
+      <textarea class="code-input" id="ans-19" style="display:none" aria-hidden="true" tabindex="-1"></textarea>
+      <template class="prompt-tpl">Aufgabe 19 – Fünf Säulen der Sozialversicherung (max. 5 Punkte, 1 P je vollständig korrekter Zeile)
+
+Aufgabenstellung: Vervollständige die Tabelle mit Träger, Finanzierung und typischer Leistung für jede der fünf Sozialversicherungen.
+
+Musterlösung:
+• Krankenversicherung | Krankenkassen | AN + AG je 50 % (14,6 % gesamt) | Krankengeld, Arztbehandlung
+• Unfallversicherung | Berufsgenossenschaft | allein AG | Heilbehandlung bei Arbeitsunfall / Berufskrankheit
+• Rentenversicherung | Deutsche Rentenversicherung | AN + AG je 50 % (18,6 % gesamt) | Altersrente
+• Arbeitslosenversicherung | Bundesagentur für Arbeit | AN + AG je 50 % (2,6 % gesamt) | Arbeitslosengeld, Kurzarbeitergeld
+• Pflegeversicherung | Pflegekassen | AN + AG je 50 % (3,4 % gesamt; Kinderlose +0,6 %) | Pflegegeld, Pflegesachleistungen
+
+Vergib je 1 Punkt, wenn Träger, Finanzierung UND Leistung einer Zeile sinngemäß korrekt sind. Kleine Schreibfehler ignorieren.
+
+Antwort des Schülers (Tabelle):
+{{CODE}}</template>
+    </div>
+    <div class="q-foot">
+      <button class="btn q-copy-single" type="button">KI-Prompt kopieren</button>
+      <button class="btn q-reveal" type="button" aria-expanded="false">Musterlösung anzeigen</button>
+    </div>
+    <div class="q-solution" hidden>
+      <span class="sol-label">Musterlösung</span>
+      <div class="tbl-wrap">
+        <table class="ref">
+          <thead>
+            <tr><th>Versicherung</th><th>Träger</th><th>Finanzierung</th><th>Typische Leistung</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Krankenversicherung</td><td>Krankenkassen</td><td>AN &amp; AG je 50 % (14,6 %)</td><td>Krankengeld, Arztbehandlung</td></tr>
+            <tr><td>Unfallversicherung</td><td>Berufsgenossenschaft</td><td>Allein AG</td><td>Heilbehandlung, Berufskrankheit</td></tr>
+            <tr><td>Rentenversicherung</td><td>Deutsche Rentenversicherung</td><td>AN &amp; AG je 50 % (18,6 %)</td><td>Altersrente</td></tr>
+            <tr><td>Arbeitslosenversicherung</td><td>Bundesagentur für Arbeit</td><td>AN &amp; AG je 50 % (2,6 %)</td><td>Arbeitslosengeld</td></tr>
+            <tr><td>Pflegeversicherung</td><td>Pflegekassen</td><td>AN &amp; AG je 50 % (3,4 %)</td><td>Pflegegeld, Sachleistungen</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:10px;margin-bottom:0;font-size:.9rem;color:var(--muted)">Je 1 Punkt pro vollständig korrekte Zeile (Träger + Finanzierung + Leistung).</p>
+    </div>
+  </article>
+
   </div><!-- /exam-content -->
 
   <div id="history" hidden></div>
 
   <div class="note">
     <span class="lbl">So funktioniert die Bewertung</span>
-    <p>Jede richtige Auswahlfrage zählt 1 Punkt (16 Punkte gesamt). Beim Abgeben (oder bei Zeitablauf) wird automatisch
-      ausgewertet, die Quote in Prozent ermittelt und über den <strong>IHK-Notenschlüssel</strong> sofort eine Note bestimmt. Deine letzten Versuche
-      (mit Note) werden lokal gespeichert. Diese Probe-SA umfasst ausschließlich die <strong>Sozialversicherungen</strong>.</p>
+    <p><strong>Auswahlteil (A–C):</strong> Je richtige MC-Frage 1 Punkt (16&nbsp;P gesamt) — wird automatisch beim Abgeben ausgewertet.<br>
+      <strong>Offener Teil (D):</strong> Q17 (2&nbsp;P) + Q18 (3&nbsp;P) + Q19 (5&nbsp;P) = 10&nbsp;P — Bewertung per KI-Prompt; Punkte manuell ins Formular eintragen.<br>
+      <strong>Gesamt: 26&nbsp;Punkte.</strong> Note wird über den <strong>IHK-Notenschlüssel</strong> bestimmt. Letzte Versuche werden lokal gespeichert.</p>
   </div>
 </div></main>
-<footer class="foot"><div class="wrap"><span class="mono">PuG · Probe-SA — Sozialversicherungen · 16 Fragen · ca. 20 min</span></div></footer>
+<footer class="foot"><div class="wrap"><span class="mono">PuG · Probe-SA — Sozialversicherungen · 16 MC + 3 offen · 26 P · ca. 30 min</span></div></footer>
 <script src="assets/pruefung.js"></script>
 </body>
 </html>
