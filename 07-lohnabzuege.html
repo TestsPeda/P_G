@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lohnabzüge — PuG Ausbildung &amp; Arbeitsrecht</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/print.css">
+<style>
+  .abzug-tag {
+    display: inline-block; background: var(--gold); color: #fff;
+    font-family: var(--font-mono); font-size: .7rem; padding: 2px 9px;
+    border-radius: 20px; letter-spacing: .1em; text-transform: uppercase;
+    vertical-align: middle; margin-left: 8px;
+  }
+  details.toggle-detail { margin-top: 10px; }
+  details.toggle-detail summary {
+    cursor: pointer; font-size: .84rem; color: var(--accent-2);
+    font-weight: 700; font-family: var(--font-mono); list-style: none;
+    display: flex; align-items: center; gap: 6px; user-select: none;
+  }
+  details.toggle-detail summary::before { content: "▶"; font-size: .7rem; transition: transform .15s; }
+  details.toggle-detail[open] summary::before { transform: rotate(90deg); }
+  details.toggle-detail .detail-body {
+    margin-top: 10px; padding-top: 10px;
+    border-top: 1px solid var(--line); font-size: .88rem;
+  }
+  details.toggle-detail .detail-body ul { margin: 6px 0 8px; padding-left: 16px; line-height: 1.7; }
+  details.toggle-detail .detail-body p { margin: 0 0 6px; }
+  details.toggle-detail .detail-body p:last-child { margin-bottom: 0; }
+  .bsp-head { font-weight: 700; font-size: 1.05rem; margin: 28px 0 6px; }
+  .bsp-netto { background: var(--accent-2-tint); }
+  .bsp-netto-alt { background: var(--surface-2); }
+  .hint-tag { font-size: .82rem; color: var(--muted); font-style: italic; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="mark">PuG</span><b>Ausbildung &amp; Arbeitsrecht</b></a>
+  <nav class="topnav">
+    <a href="01-duales-system.html">01 Dual</a>
+    <a href="02-ausbildungsvertrag.html">02 Vertrag</a>
+    <a href="03-jugendarbeitsschutz.html">03 JArbSchG</a>
+    <a href="04-arbeitszeitgesetz.html">04 ArbZG</a>
+    <a href="05-sozialversicherungen.html">05 Sozialv.</a>
+    <a href="06-urlaub-entgelt.html">06 Urlaub</a>
+    <a href="07-lohnabzuege.html" class="current">07 Lohnabz.<sup>+</sup></a>
+    <a href="lernseite.html">Lernen</a>
+    <a href="pruefung.html">Probe-SA</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="scorechip">Zusatzmodul</span>
+</header>
+<main><div class="wrap">
+  <section class="hero">
+    <p class="eyebrow">Zusatzmodul · Stand 2026 · Landkreis Regensburg (Bayern)</p>
+    <h1>Lohnabzüge <span class="abzug-tag">Zusatz</span></h1>
+    <p class="lede">Was bleibt vom Bruttolohn übrig? Sozialversicherung, Lohnsteuer, Solidaritätszuschlag und Kirchensteuer verständlich erklärt — mit zwei konkreten Beispielrechnungen.</p>
+  </section>
+
+  <!-- ===================== Überblick ===================== -->
+  <div class="sec-head" id="ueberblick"><span class="ix">↓</span><h2>Was wird abgezogen?</h2></div>
+  <p class="sec-sub">Diese Positionen erscheinen auf jeder Lohnabrechnung — in dieser Reihenfolge.</p>
+  <div class="learn-grid">
+    <div class="learn-card">
+      <span class="lc-term">Rentenversicherung (RV)</span>
+      <p class="lc-def"><strong>9,3 %</strong> AN-Anteil · Basis: Bruttolohn bis zur BBG (8.450 €/Mon.) · AG zahlt ebenfalls 9,3 % — paritätisch.</p>
+    </div>
+    <div class="learn-card">
+      <span class="lc-term">Krankenversicherung (KV)</span>
+      <p class="lc-def"><strong>7,3 %</strong> Grundbeitrag + <strong>½ Zusatzbeitrag</strong> AN-Anteil · Basis: bis BBG (5.812,50 €/Mon.) · paritätisch mit AG · Zusatz ist kassenindividuell.</p>
+    </div>
+    <div class="learn-card">
+      <span class="lc-term">Pflegeversicherung (PV)</span>
+      <p class="lc-def"><strong>1,8 %</strong> AN-Anteil + <strong>0,6 %</strong> Zuschlag für Kinderlose · Basis: bis BBG (5.812,50 €/Mon.) · AG zahlt 1,8 %.</p>
+    </div>
+    <div class="learn-card">
+      <span class="lc-term">Arbeitslosenversicherung (ALV)</span>
+      <p class="lc-def"><strong>1,3 %</strong> AN-Anteil · Basis: bis BBG (8.450 €/Mon.) · paritätisch mit AG.</p>
+    </div>
+    <div class="learn-card">
+      <span class="lc-term">Lohnsteuer</span>
+      <p class="lc-def">Einkommensteuer als monatliche Vorauszahlung. Progressiv (14–42 %) · abhängig von Steuerklasse (I–VI) · Grundfreibetrag 2026: 12.096 €/Jahr steuerfrei.</p>
+    </div>
+    <div class="learn-card">
+      <span class="lc-term">Solidaritätszuschlag</span>
+      <p class="lc-def">Seit 2021 für ~90 % abgeschafft. Greift erst ab Lohnsteuer &gt; <strong>18.130 €/Jahr</strong>. Satz: 5,5 % der Lohnsteuer.</p>
+    </div>
+    <div class="learn-card">
+      <span class="lc-term">Kirchensteuer (Bayern: 8 %)</span>
+      <p class="lc-def"><strong>8 %</strong> der <em>Lohnsteuer</em> · nur für Kirchenmitglieder · Kirchenaustritt beim Amtsgericht / Standesamt möglich → sofortige Befreiung.</p>
+    </div>
+    <div class="learn-card" style="border-left-color: var(--muted);">
+      <span class="lc-term" style="color: var(--muted);">Unfallversicherung (UV) — kein AN-Abzug</span>
+      <p class="lc-def">Wird ausschließlich vom <strong>Arbeitgeber</strong> an die Berufsgenossenschaft gezahlt. Erscheint nicht als Abzug auf der Lohnabrechnung des AN.</p>
+    </div>
+  </div>
+
+  <!-- ===================== SV-Tabelle ===================== -->
+  <div class="sec-head" id="sv"><span class="ix">1</span><h2>Sozialversicherungsbeiträge 2026</h2></div>
+  <p class="sec-sub">AN- und AG-Anteile auf einen Blick — mit Beitragsbemessungsgrenze je Versicherungszweig.</p>
+  <div class="tbl-wrap">
+    <table class="ref">
+      <thead>
+        <tr>
+          <th>Versicherung</th>
+          <th>AN-Anteil</th>
+          <th>AG-Anteil</th>
+          <th>Gesamt</th>
+          <th>BBG (monatlich)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Rentenversicherung (RV)</strong></td>
+          <td>9,3 %</td>
+          <td>9,3 %</td>
+          <td>18,6 %</td>
+          <td>8.450 €</td>
+        </tr>
+        <tr>
+          <td><strong>Krankenversicherung (KV)</strong></td>
+          <td>7,3 % + ½ Zusatz*</td>
+          <td>7,3 % + ½ Zusatz*</td>
+          <td>14,6 % + Zusatz*</td>
+          <td>5.812,50 €</td>
+        </tr>
+        <tr>
+          <td><strong>Pflegeversicherung (PV)</strong></td>
+          <td>1,8 % (+ 0,6 % kinderlos)</td>
+          <td>1,8 %</td>
+          <td>3,6 % (+ 0,6 % kinderlos)</td>
+          <td>5.812,50 €</td>
+        </tr>
+        <tr>
+          <td><strong>Arbeitslosenversicherung (ALV)</strong></td>
+          <td>1,3 %</td>
+          <td>1,3 %</td>
+          <td>2,6 %</td>
+          <td>8.450 €</td>
+        </tr>
+        <tr>
+          <td><strong>Unfallversicherung (UV)</strong></td>
+          <td style="color: var(--muted);">—</td>
+          <td>100 % (variabel)</td>
+          <td>nur AG</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hint-tag">* Zusatzbeitrag kassenindividuell — in den Beispielen: 2,0 % gesamt (je 1,0 % AN / AG).</p>
+
+  <div class="note">
+    <p class="lbl">BBG &amp; Versicherungspflichtgrenze (VPG)</p>
+    <p>Die <strong>Beitragsbemessungsgrenze (BBG)</strong> deckelt die Beitragsberechnung — Einkommen über der BBG ist beitragsfrei. Die <strong>Versicherungspflichtgrenze (VPG)</strong> liegt 2026 bei <strong>6.450 €/Monat</strong>: Wer sie dauerhaft überschreitet, darf in die PKV wechseln. Achtung: BBG KV (5.812,50 €) &lt; VPG (6.450 €) — wer zwischen beiden Grenzen verdient, zahlt bereits den GKV-Höchstbeitrag, kann aber noch nicht in die PKV.</p>
+  </div>
+
+  <!-- ===================== Lohnsteuer ===================== -->
+  <div class="sec-head" id="lohnsteuer"><span class="ix">2</span><h2>Lohnsteuer</h2></div>
+  <p class="sec-sub">Vorauszahlung auf die Einkommensteuer — monatlich automatisch abgeführt.</p>
+  <div class="learn-grid">
+    <div class="learn-card">
+      <span class="lc-term">Grundfreibetrag 2026</span>
+      <p class="lc-def"><strong>12.096 €/Jahr</strong> (= 1.008 €/Monat) steuerfrei. Erst das Einkommen darüber wird mit dem Eingangssteuersatz von 14 % besteuert.</p>
+    </div>
+    <div class="learn-card">
+      <span class="lc-term">AN-Pauschbetrag</span>
+      <p class="lc-def"><strong>1.230 €/Jahr</strong> pauschal abzugsfähige Werbungskosten — reduziert automatisch das zu versteuernde Einkommen (zvE). Bei höheren echten Kosten: Steuererklärung lohnt sich.</p>
+    </div>
+    <div class="learn-card">
+      <span class="lc-term">Progressive Steuersätze</span>
+      <p class="lc-def"><strong>14 %</strong> Einstieg · bis <strong>42 %</strong> Spitzensteuersatz (ab ca. 68.000 €/Jahr) · <strong>45 %</strong> Reichensteuersatz (ab ca. 278.000 €/Jahr). Je mehr Einkommen, desto höher der <em>Grenzsteuersatz</em>.</p>
+    </div>
+  </div>
+
+  <p style="font-weight: 700; margin: 16px 0 6px;">Steuerklassen (StK) im Überblick</p>
+  <div class="tbl-wrap">
+    <table class="ref">
+      <thead>
+        <tr><th>StK</th><th>Für wen</th><th>Wirkung auf Lohnsteuer</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>I</strong></td><td>Ledig, geschieden, verwitwet</td><td>Standardklasse</td></tr>
+        <tr><td><strong>II</strong></td><td>Alleinerziehende</td><td>Entlastungsbetrag wirksam → etwas weniger Steuer</td></tr>
+        <tr><td><strong>III</strong></td><td>Verheiratet — besser Verdienender</td><td>Niedrigste Steuerbelastung</td></tr>
+        <tr><td><strong>IV</strong></td><td>Verheiratet — ähnliches Einkommen beider Partner</td><td>Wie StK I (Steuerlast gleichmäßig verteilt)</td></tr>
+        <tr><td><strong>V</strong></td><td>Verheiratet — Wenigerverdiener (Partner hat StK III)</td><td>Höchste Steuerbelastung</td></tr>
+        <tr><td><strong>VI</strong></td><td>Zweites / weiteres Arbeitsverhältnis</td><td>Keine Freibeträge → sehr hohe Steuer</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <p class="lbl">zvE vereinfacht berechnen</p>
+    <p><strong>Formel (vereinfacht):</strong> Jahresbrutto − Grundfreibetrag (12.096 €) − AN-Pauschbetrag (1.230 €) = zu versteuerndes Einkommen (zvE). Erst auf das zvE wird der progressive Steuertarif angewendet. In der Realität wird zusätzlich eine Vorsorgepauschale (Teile der SV-Beiträge) abgezogen, was die Lohnsteuer weiter reduziert. Für exakte Werte: <strong>bmf-steuerrechner.de</strong></p>
+  </div>
+
+  <!-- ===================== Soli ===================== -->
+  <div class="sec-head" id="soli"><span class="ix">3</span><h2>Solidaritätszuschlag</h2></div>
+  <div class="learn-grid">
+    <div class="learn-card">
+      <span class="lc-term">Seit 2021 für ~90 % abgeschafft</span>
+      <p class="lc-def">Kein Soli, solange die jährliche Lohnsteuer unter <strong>18.130 €</strong> bleibt. Das entspricht einem zvE von ca. 96.000 €/Jahr — betrifft die große Mehrheit der Beschäftigten nicht.</p>
+    </div>
+    <div class="learn-card">
+      <span class="lc-term">Milderungszone &amp; voller Satz</span>
+      <p class="lc-def">Lohnsteuer 18.130–34.990 €/Jahr: gleitender Übergang. Über 34.990 € Lohnsteuer/Jahr: voller Soli von <strong>5,5 %</strong> der Lohnsteuer. Betrifft nur Spitzenverdiener.</p>
+    </div>
+  </div>
+
+  <!-- ===================== Kirchensteuer ===================== -->
+  <div class="sec-head" id="kirchensteuer"><span class="ix">4</span><h2>Kirchensteuer (Bayern)</h2></div>
+  <div class="learn-grid">
+    <div class="learn-card">
+      <span class="lc-term">Bayern: 8 % der Lohnsteuer</span>
+      <p class="lc-def">Berechnung auf die <em>Lohnsteuer</em>, nicht auf das Bruttoeinkommen. In den meisten anderen Bundesländern gilt 9 %. Bayern und Baden-Württemberg sind die einzigen Länder mit 8 %.</p>
+    </div>
+    <div class="learn-card">
+      <span class="lc-term">Kirchenaustritt</span>
+      <p class="lc-def">Erklärung beim Amtsgericht oder Standesamt (je nach Konfession). Gebühr: ca. 30–35 €. Die Abmeldung aus dem ELStAM-System wirkt ab dem Folgemonat — kein rückwirkender Erlass.</p>
+    </div>
+    <div class="learn-card">
+      <span class="lc-term">Keine KiSt ohne Lohnsteuer</span>
+      <p class="lc-def">Da KiSt = 8 % der Lohnsteuer: Wer 0 € Lohnsteuer zahlt (z. B. Azubi unter dem Freibetrag), zahlt automatisch auch <strong>0 € Kirchensteuer</strong> — unabhängig von der Kirchenmitgliedschaft.</p>
+    </div>
+  </div>
+
+  <!-- ===================== Beispielrechnungen ===================== -->
+  <div class="sec-head" id="beispiele"><span class="ix">5</span><h2>Beispielrechnungen</h2></div>
+  <p class="sec-sub">Beide Beispiele: Landkreis Regensburg, Bayern, 2026 · KV-Zusatzbeitrag 2,0 % gesamt (AN-Anteil 1,0 %)</p>
+
+  <!-- Beispiel 1 -->
+  <p class="bsp-head">Beispiel 1 — Auszubildender Max, 3. Lehrjahr</p>
+  <div class="note" style="margin-bottom: 10px;">
+    <p class="lbl">Eckdaten</p>
+    <p>Bruttolohn <strong>1.100 €/Monat</strong> · Steuerklasse I · ledig · kinderlos · Kirchenmitglied (kath.) · Wohnort: Landkreis Regensburg (Bayern)</p>
+    <p style="margin-top: 5px; font-size: .88rem; color: var(--muted);">Brutto &lt; BBG KV/PV (5.812,50 €) und &lt; BBG RV/ALV (8.450 €) → SV-Beiträge auf volle 1.100 € · Brutto &lt; VPG (6.450 €) → GKV-pflichtig</p>
+  </div>
+  <div class="tbl-wrap">
+    <table class="ref">
+      <thead>
+        <tr><th>Position</th><th>Berechnung</th><th style="text-align:right;">Betrag</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Bruttolohn</strong></td><td>—</td><td style="text-align:right;"><strong>1.100,00 €</strong></td></tr>
+        <tr><td>− Rentenversicherung AN (9,3 %)</td><td>1.100 × 0,093</td><td style="text-align:right;">− 102,30 €</td></tr>
+        <tr><td>− Krankenversicherung AN (7,3 % + 1,0 % Zusatz)</td><td>1.100 × 0,083</td><td style="text-align:right;">− 91,30 €</td></tr>
+        <tr><td>− Pflegeversicherung AN (1,8 % + 0,6 % kinderlos)</td><td>1.100 × 0,024</td><td style="text-align:right;">− 26,40 €</td></tr>
+        <tr><td>− Arbeitslosenversicherung AN (1,3 %)</td><td>1.100 × 0,013</td><td style="text-align:right;">− 14,30 €</td></tr>
+        <tr><td style="color:var(--muted); padding-left:28px;">Sozialversicherung gesamt</td><td style="color:var(--muted);">102,30 + 91,30 + 26,40 + 14,30</td><td style="text-align:right; color:var(--muted);">− 234,30 €</td></tr>
+        <tr>
+          <td>− Lohnsteuer (StK I)</td>
+          <td>Jahresbrutto 13.200 € − GFB 12.096 € − ANP 1.230 € = −126 € → zvE = 0 €</td>
+          <td style="text-align:right;"><strong>0,00 €</strong></td>
+        </tr>
+        <tr><td>− Solidaritätszuschlag</td><td>Lohnsteuer = 0 €</td><td style="text-align:right;">0,00 €</td></tr>
+        <tr><td>− Kirchensteuer Bayern (8 % der LSt)</td><td>8 % × 0,00 €</td><td style="text-align:right;">0,00 €</td></tr>
+        <tr class="bsp-netto">
+          <td><strong>Nettolohn</strong></td>
+          <td>1.100,00 − 234,30</td>
+          <td style="text-align:right;"><strong>865,70 €</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note" style="border-left-color: var(--accent-2);">
+    <p class="lbl">Erkenntnis: Warum 0 € Lohnsteuer — und damit auch 0 € Kirchensteuer?</p>
+    <p>Das Jahresbrutto (1.100 × 12 = <strong>13.200 €</strong>) übersteigt den Grundfreibetrag (12.096 €) nur um 1.104 €. Der AN-Pauschbetrag (1.230 €) ist größer als dieser Überschuss — das zu versteuernde Einkommen ist damit rechnerisch negativ → <strong>Lohnsteuer = 0 €</strong>. Folge: Auch Soli und Kirchensteuer entfallen vollständig, obwohl Max Kirchenmitglied ist. Von 1.100 € Brutto bleiben <strong>865,70 € netto</strong> — <strong>78,7 %</strong> des Bruttos.</p>
+  </div>
+
+  <!-- Beispiel 2 -->
+  <p class="bsp-head">Beispiel 2 — Bürokauffrau Lena, Vollzeit</p>
+  <div class="note" style="margin-bottom: 10px;">
+    <p class="lbl">Eckdaten</p>
+    <p>Bruttolohn <strong>3.500 €/Monat</strong> · Steuerklasse I · ledig · kinderlos · Kirchenmitglied (kath.) · Wohnort: Landkreis Regensburg (Bayern)</p>
+    <p style="margin-top: 5px; font-size: .88rem; color: var(--muted);">Brutto &lt; BBG KV/PV (5.812,50 €) → KV/PV auf volle 3.500 € · Brutto &lt; BBG RV/ALV (8.450 €) → RV/ALV auf volle 3.500 € · Brutto &lt; VPG (6.450 €) → GKV-pflichtig, kein PKV-Wechselrecht</p>
+  </div>
+  <div class="tbl-wrap">
+    <table class="ref">
+      <thead>
+        <tr><th>Position</th><th>Berechnung</th><th style="text-align:right;">Betrag</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Bruttolohn</strong></td><td>—</td><td style="text-align:right;"><strong>3.500,00 €</strong></td></tr>
+        <tr><td>− Rentenversicherung AN (9,3 %)</td><td>3.500 × 0,093</td><td style="text-align:right;">− 325,50 €</td></tr>
+        <tr><td>− Krankenversicherung AN (7,3 % + 1,0 % Zusatz)</td><td>3.500 × 0,083</td><td style="text-align:right;">− 290,50 €</td></tr>
+        <tr><td>− Pflegeversicherung AN (1,8 % + 0,6 % kinderlos)</td><td>3.500 × 0,024</td><td style="text-align:right;">− 84,00 €</td></tr>
+        <tr><td>− Arbeitslosenversicherung AN (1,3 %)</td><td>3.500 × 0,013</td><td style="text-align:right;">− 45,50 €</td></tr>
+        <tr><td style="color:var(--muted); padding-left:28px;">Sozialversicherung gesamt</td><td style="color:var(--muted);">325,50 + 290,50 + 84,00 + 45,50</td><td style="text-align:right; color:var(--muted);">− 745,50 €</td></tr>
+        <tr>
+          <td>− Lohnsteuer (StK I, vereinfacht)</td>
+          <td>Jahresbrutto 42.000 − GFB 12.096 − ANP 1.230 = zvE 28.674 € → ca. 4.080 €/Jahr</td>
+          <td style="text-align:right;">ca. − 340,00 €</td>
+        </tr>
+        <tr>
+          <td>− Solidaritätszuschlag</td>
+          <td>LSt 4.080 €/Jahr &lt; Freigrenze 18.130 €</td>
+          <td style="text-align:right;">0,00 €</td>
+        </tr>
+        <tr>
+          <td>− Kirchensteuer Bayern (8 % der LSt)</td>
+          <td>8 % × 340,00 €</td>
+          <td style="text-align:right;">ca. − 27,20 €</td>
+        </tr>
+        <tr class="bsp-netto">
+          <td><strong>Nettolohn (mit Kirchensteuer)</strong></td>
+          <td>3.500,00 − 745,50 − 340,00 − 27,20</td>
+          <td style="text-align:right;"><strong>ca. 2.387,30 €</strong></td>
+        </tr>
+        <tr class="bsp-netto-alt">
+          <td><em>Nettolohn (ohne KiSt — nach Kirchenaustritt)</em></td>
+          <td>3.500,00 − 745,50 − 340,00</td>
+          <td style="text-align:right;"><em>ca. 2.414,50 €</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hint-tag" style="margin-top: 5px;">Lohnsteuer-Richtwert (vereinfacht, ohne Vorsorgepauschale). Exakte Berechnung: bmf-steuerrechner.de</p>
+
+  <div class="note" style="border-left-color: var(--accent-2); margin-top: 10px;">
+    <p class="lbl">Erkenntnisse aus Beispiel 2</p>
+    <ul style="margin: 4px 0 0; padding-left: 18px; line-height: 1.8;">
+      <li><strong>Netto-Quote:</strong> Von 3.500 € Brutto verbleiben ca. 2.387 € netto — <strong>ca. 68 %</strong> des Bruttos (mit KiSt). Ohne Kirchensteuer: ca. 69 %.</li>
+      <li><strong>Kein Solidaritätszuschlag</strong> — die Jahres-Lohnsteuer (ca. 4.080 €) liegt weit unter der Freigrenze von 18.130 €.</li>
+      <li><strong>Kirchenaustritt spart ca. 27 €/Monat</strong> = ca. 326 €/Jahr — eine relevante persönliche Entscheidung.</li>
+      <li><strong>GKV-Pflicht:</strong> Mit 3.500 € liegt Lena unter der VPG (6.450 €/Mon.) → kein Wechselrecht in die PKV.</li>
+      <li><strong>Keine BBG erreicht:</strong> Alle SV-Beiträge werden auf den vollen Bruttolohn berechnet — kein Beitragsdeckel greift.</li>
+      <li><strong>Solidaritätsprinzip in der KV:</strong> Ein Dachdecker mit 3.500 € zahlt denselben KV-Beitrag wie Lena (Büro) — Beruf oder Risiko spielen keine Rolle. Das ist Solidarität, kein Äquivalenzprinzip.</li>
+    </ul>
+  </div>
+
+  <!-- ===================== SVG Visualisierung ===================== -->
+  <div class="gal-grid" style="margin-top: 24px;">
+    <div class="gal-item">
+      <figure class="diagram">
+        <svg viewBox="0 0 760 230" role="img" aria-label="Gestapeltes Balkendiagramm: Aufteilung von 3.500 Euro Bruttolohn auf SV-Beiträge, Lohnsteuer, Kirchensteuer und Nettolohn">
+          <text x="380" y="26" text-anchor="middle" class="svg-title">Brutto → Netto: 3.500 € (Bsp. 2, mit Kirchensteuer)</text>
+          <!-- Bar: x=60 to x=700, width=640 = 3.500 € -->
+          <!-- SV 745.50: 745.50/3500×640=136.3→136 px -->
+          <!-- LSt 340: 340/3500×640=62.2→62 px -->
+          <!-- KiSt 27.20: 27.20/3500×640=5.0→5 px -->
+          <!-- Netto 2387.30: 640-136-62-5=437 px -->
+          <rect x="60"  y="60" width="136" height="52" fill="#DD5430"/>
+          <rect x="196" y="60" width="62"  height="52" fill="#16242E"/>
+          <rect x="258" y="60" width="5"   height="52" fill="#C6841E"/>
+          <rect x="263" y="60" width="437" height="52" fill="#15786E"/>
+          <!-- Bar labels -->
+          <text x="128" y="91" text-anchor="middle" class="svg-label-sm" fill="#fff" style="font-weight:700;">SV</text>
+          <text x="227" y="91" text-anchor="middle" class="svg-label-sm" fill="#fff" style="font-weight:700;">LSt</text>
+          <text x="481" y="91" text-anchor="middle" class="svg-label"    fill="#fff" style="font-weight:700;">Netto</text>
+          <!-- Below bar: amounts -->
+          <line x1="60"  y1="115" x2="60"  y2="125" stroke="#B9C7D2" stroke-width="1"/>
+          <line x1="196" y1="115" x2="196" y2="125" stroke="#B9C7D2" stroke-width="1"/>
+          <line x1="258" y1="115" x2="258" y2="140" stroke="#B9C7D2" stroke-width="1"/>
+          <line x1="263" y1="115" x2="263" y2="140" stroke="#B9C7D2" stroke-width="1"/>
+          <line x1="700" y1="115" x2="700" y2="125" stroke="#B9C7D2" stroke-width="1"/>
+          <text x="128" y="137" text-anchor="middle" class="svg-label-sm">SV: 745,50 €</text>
+          <text x="128" y="152" text-anchor="middle" class="svg-label-sm">(21,3 %)</text>
+          <text x="227" y="137" text-anchor="middle" class="svg-label-sm">LSt: 340 €</text>
+          <text x="227" y="152" text-anchor="middle" class="svg-label-sm">(9,7 %)</text>
+          <text x="260" y="130" text-anchor="middle" class="svg-label-sm">KiSt</text>
+          <text x="260" y="144" text-anchor="middle" class="svg-label-sm">27 €</text>
+          <text x="481" y="137" text-anchor="middle" class="svg-label-sm">Netto: ca. 2.387 €</text>
+          <text x="481" y="152" text-anchor="middle" class="svg-label-sm">(68,2 %)</text>
+          <!-- Legend -->
+          <rect x="60"  y="185" width="13" height="10" fill="#DD5430"/>
+          <text x="79"  y="195" class="svg-label-sm">Sozialversicherung AN</text>
+          <rect x="235" y="185" width="13" height="10" fill="#16242E"/>
+          <text x="254" y="195" class="svg-label-sm">Lohnsteuer</text>
+          <rect x="370" y="185" width="13" height="10" fill="#C6841E"/>
+          <text x="389" y="195" class="svg-label-sm">Kirchensteuer</text>
+          <rect x="500" y="185" width="13" height="10" fill="#15786E"/>
+          <text x="519" y="195" class="svg-label-sm">Nettolohn</text>
+        </svg>
+        <figcaption>Bei 3.500 € Brutto bleiben ca. 2.387 € netto — die Sozialversicherung (21 %) ist der größte Abzugsblock, gefolgt von der Lohnsteuer (10 %).</figcaption>
+      </figure>
+    </div>
+    <div class="gal-item">
+      <figure class="diagram">
+        <svg viewBox="0 0 760 230" role="img" aria-label="Vergleich Brutto-Netto-Quote: Azubi 1.100 Euro vs. Bürokauffrau 3.500 Euro">
+          <text x="380" y="26" text-anchor="middle" class="svg-title">Vergleich: Netto-Quote Bsp. 1 vs. Bsp. 2</text>
+          <!-- Bsp 1: 865.70/1100 = 78.7% netto, SV 234.30 = 21.3% -->
+          <!-- Bar width 260px each, bar height 52 -->
+          <!-- Bsp 1 bar x=80, width=260 -->
+          <rect x="80"  y="60" width="55"  height="52" fill="#DD5430"/> <!-- SV: 21.3%×260=55.4→55 -->
+          <rect x="135" y="60" width="205" height="52" fill="#15786E"/> <!-- Netto: 78.7%×260=204.6→205 -->
+          <text x="107" y="91" text-anchor="middle" class="svg-label-sm" fill="#fff" style="font-weight:700;">SV</text>
+          <text x="237" y="91" text-anchor="middle" class="svg-label"    fill="#fff" style="font-weight:700;">Netto 78,7 %</text>
+          <text x="210" y="130" text-anchor="middle" class="svg-label" style="font-weight:700;">Azubi · 1.100 €</text>
+          <text x="210" y="148" text-anchor="middle" class="svg-label-sm">SV 21,3 % · LSt 0 % · KiSt 0 %</text>
+          <!-- Bsp 2 bar x=420, width=260 -->
+          <!-- SV 21.3%, LSt 9.7%, KiSt 0.8%, Netto 68.2% -->
+          <rect x="420" y="60" width="55"  height="52" fill="#DD5430"/> <!-- SV 21.3%×260=55 -->
+          <rect x="475" y="60" width="25"  height="52" fill="#16242E"/> <!-- LSt 9.7%×260=25 -->
+          <rect x="500" y="60" width="2"   height="52" fill="#C6841E"/> <!-- KiSt 0.8%×260=2 -->
+          <rect x="502" y="60" width="178" height="52" fill="#15786E"/> <!-- Netto 68.2%×260=177→178 -->
+          <text x="447" y="91" text-anchor="middle" class="svg-label-sm" fill="#fff" style="font-weight:700;">SV</text>
+          <text x="591" y="91" text-anchor="middle" class="svg-label"    fill="#fff" style="font-weight:700;">Netto 68,2 %</text>
+          <text x="550" y="130" text-anchor="middle" class="svg-label" style="font-weight:700;">Bürokauffrau · 3.500 €</text>
+          <text x="550" y="148" text-anchor="middle" class="svg-label-sm">SV 21,3 % · LSt 9,7 % · KiSt 0,8 %</text>
+        </svg>
+        <figcaption>Beim Azubi fehlt die Lohnsteuer komplett — dadurch landet ein größerer Anteil als Netto, obwohl der SV-Prozentwert identisch ist.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <nav class="pager">
+    <a class="prev" href="06-urlaub-entgelt.html"><span>Zurück</span><b>← 06 Urlaub &amp; Entgelt</b></a>
+    <a class="next" href="lernseite.html"><span>Weiter</span><b>Lernen →</b></a>
+  </nav>
+</div></main>
+<footer class="foot"><div class="wrap"><span class="mono">PuG · Zusatzmodul 07 — Lohnabzüge (Stand 2026 · Landkreis Regensburg / Bayern)</span></div></footer>
+</body>
+</html>
