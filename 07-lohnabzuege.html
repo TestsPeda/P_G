@@ -32,6 +32,41 @@
   .bsp-netto { background: var(--accent-2-tint); }
   .bsp-netto-alt { background: var(--surface-2); }
   .hint-tag { font-size: .82rem; color: var(--muted); font-style: italic; }
+  .soli-compare th, .soli-compare td { font-size: .83rem; vertical-align: top; }
+  .soli-compare thead th { vertical-align: middle; }
+  .soli-compare .sce-a { background: rgba(21,120,110,.07); }
+  .soli-compare .sce-b { background: rgba(198,132,30,.09); }
+  .soli-compare .sce-c { background: rgba(221,84,48,.07); }
+  .soli-compare .soli-hit { color: #DD5430; font-weight: 700; }
+  .soli-compare .no-soli { color: #15786E; font-weight: 700; }
+  .open-textarea {
+    width: 100%; min-height: 120px; padding: 10px 12px;
+    border: 2px solid var(--line); border-radius: 8px;
+    background: var(--surface-2); color: var(--text); font-size: .9rem;
+    font-family: var(--font-body); resize: vertical; margin: 10px 0 8px;
+    box-sizing: border-box;
+  }
+  .open-textarea:focus { outline: none; border-color: var(--accent-2); }
+  .btn-ki {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent-2); color: #fff;
+    border: none; border-radius: 6px; padding: 8px 18px;
+    font-size: .85rem; font-weight: 700; cursor: pointer;
+    font-family: var(--font-mono); letter-spacing: .03em;
+    transition: background .15s;
+  }
+  .btn-ki:hover { opacity: .88; }
+  .btn-ki.copied { background: var(--gold); }
+  .aufgabe-card {
+    background: var(--surface); border: 2px solid var(--line);
+    border-radius: 12px; padding: 22px 24px; margin-bottom: 18px;
+  }
+  .aufgabe-card .aufg-nr {
+    font-family: var(--font-mono); font-size: .75rem; font-weight: 700;
+    color: var(--accent-2); text-transform: uppercase; letter-spacing: .1em;
+    margin: 0 0 6px;
+  }
+  .aufgabe-card .aufg-h { font-size: 1.05rem; font-weight: 700; margin: 0 0 10px; }
 </style>
 </head>
 <body>
@@ -207,6 +242,101 @@
       <span class="lc-term">Milderungszone &amp; voller Satz</span>
       <p class="lc-def">Lohnsteuer 18.130–34.990 €/Jahr: gleitender Übergang. Über 34.990 € Lohnsteuer/Jahr: voller Soli von <strong>5,5 %</strong> der Lohnsteuer. Betrifft nur Spitzenverdiener.</p>
     </div>
+  </div>
+
+  <!-- Soli Drei-Szenarien-Vergleich -->
+  <p style="font-weight: 700; margin: 24px 0 8px;">Drei Szenarien: Wer zahlt wirklich Soli?</p>
+  <p class="sec-sub" style="margin: 0 0 14px;">Alle Angaben: StK I · ledig · kinderlos · Bayern · 2026 · KV-Zusatzbeitrag 2,0 % ges. (AN-Anteil 1,0 %)</p>
+  <div class="tbl-wrap">
+    <table class="ref soli-compare">
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th class="sce-a">Szenario A<br><small>3.500 €/Mon.</small></th>
+          <th class="sce-b">Szenario B<br><small>6.200 €/Mon.</small></th>
+          <th class="sce-c">Szenario C<br><small>8.500 €/Mon.</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Grenzen</strong></td>
+          <td class="sce-a">Unter allen BBGs &amp; VPG</td>
+          <td class="sce-b">Über BBG KV/PV 5.812,50 €; noch unter VPG 6.450 € → GKV-Pflicht</td>
+          <td class="sce-c">Über VPG 6.450 € &amp; BBG RV/ALV 8.450 € → PKV möglich</td>
+        </tr>
+        <tr>
+          <td>RV AN (9,3 %)</td>
+          <td class="sce-a">3.500 × 9,3 % = <strong>325,50 €</strong></td>
+          <td class="sce-b">6.200 × 9,3 % = <strong>576,60 €</strong></td>
+          <td class="sce-c">8.450* × 9,3 % = <strong>785,85 €</strong></td>
+        </tr>
+        <tr>
+          <td>KV AN (8,3 % inkl. Zusatz)</td>
+          <td class="sce-a">3.500 × 8,3 % = <strong>290,50 €</strong></td>
+          <td class="sce-b">5.812,50* × 8,3 % = <strong>482,44 €</strong></td>
+          <td class="sce-c">5.812,50* × 8,3 % = <strong>482,44 €</strong></td>
+        </tr>
+        <tr>
+          <td>PV AN (2,4 % inkl. kinderlos)</td>
+          <td class="sce-a">3.500 × 2,4 % = <strong>84,00 €</strong></td>
+          <td class="sce-b">5.812,50* × 2,4 % = <strong>139,50 €</strong></td>
+          <td class="sce-c">5.812,50* × 2,4 % = <strong>139,50 €</strong></td>
+        </tr>
+        <tr>
+          <td>ALV AN (1,3 %)</td>
+          <td class="sce-a">3.500 × 1,3 % = <strong>45,50 €</strong></td>
+          <td class="sce-b">6.200 × 1,3 % = <strong>80,60 €</strong></td>
+          <td class="sce-c">8.450* × 1,3 % = <strong>109,85 €</strong></td>
+        </tr>
+        <tr>
+          <td><strong>SV gesamt/Mon.</strong></td>
+          <td class="sce-a"><strong>745,50 €</strong></td>
+          <td class="sce-b"><strong>1.279,14 €</strong></td>
+          <td class="sce-c"><strong>1.517,64 €</strong></td>
+        </tr>
+        <tr>
+          <td>Jahresbrutto</td>
+          <td class="sce-a">42.000 €</td>
+          <td class="sce-b">74.400 €</td>
+          <td class="sce-c">102.000 €</td>
+        </tr>
+        <tr>
+          <td>zvE (vereinfacht)</td>
+          <td class="sce-a">28.674 €</td>
+          <td class="sce-b">61.074 €</td>
+          <td class="sce-c">88.674 €</td>
+        </tr>
+        <tr>
+          <td>Lohnsteuer/Jahr (ca.)</td>
+          <td class="sce-a">ca. 4.080 €</td>
+          <td class="sce-b">ca. 14.700 €</td>
+          <td class="sce-c">ca. 26.400 €</td>
+        </tr>
+        <tr>
+          <td>Lohnsteuer/Mon. (ca.)</td>
+          <td class="sce-a">ca. 340 €</td>
+          <td class="sce-b">ca. 1.225 €</td>
+          <td class="sce-c">ca. 2.200 €</td>
+        </tr>
+        <tr>
+          <td><strong>Solidaritätszuschlag</strong></td>
+          <td class="sce-a no-soli">0 € — kein Soli<br><small>LSt 4.080 € &lt; Freigrenze 18.130 €</small></td>
+          <td class="sce-b no-soli">0 € — kein Soli<br><small>LSt 14.700 € &lt; Freigrenze 18.130 €</small></td>
+          <td class="sce-c soli-hit">984 €/Jahr ≈ 82 €/Mon.<br><small>Milderungszone: (26.400 − 18.130) × 11,9 %</small></td>
+        </tr>
+        <tr>
+          <td>PKV-Wechselrecht</td>
+          <td class="sce-a">Nein (3.500 &lt; VPG)</td>
+          <td class="sce-b">Nein — 6.200 &lt; VPG 6.450 €</td>
+          <td class="sce-c" style="font-weight:700;">Ja — 8.500 &gt; VPG 6.450 €</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hint-tag" style="margin-top: 6px;">* BBG-Höchstbeitrag greift: Beitragsberechnung gedeckelt auf den BBG-Wert. zvE vereinfacht (ohne Vorsorgepauschale). Exakte LSt-Werte: bmf-steuerrechner.de</p>
+  <div class="note" style="margin-top: 14px;">
+    <p class="lbl">Überraschung: Szenario B (6.200 €) zahlt keinen Soli!</p>
+    <p>Trotz eines weit überdurchschnittlichen Gehalts bleibt die <strong>Jahres-Lohnsteuer (ca. 14.700 €) unter der Soli-Freigrenze von 18.130 €</strong> — kein Soli. Gleichzeitig steckt B in der GKV-Grauzone: KV/PV bereits auf Höchstbeitrag gedeckelt, aber der PKV-Wechsel ist erst ab VPG (6.450 €) erlaubt. Erst ab Szenario C (8.500 €) greift der Soli — und das auch nur im <em>Milderungsbereich</em> (nicht zum vollen Satz von 5,5 %).</p>
   </div>
 
   <!-- ===================== Kirchensteuer ===================== -->
@@ -405,11 +535,128 @@
     </div>
   </div>
 
+  <!-- ===================== Aufgaben ===================== -->
+  <div class="sec-head" id="aufgaben"><span class="ix">6</span><h2>Aufgaben zur Selbstkontrolle</h2></div>
+  <p class="sec-sub">Löse die Aufgaben, trage deine Antwort ein und lasse sie von einer KI bewerten — per Klick wird ein fertig formulierter Prompt (inkl. Musterlösung) in die Zwischenablage kopiert.</p>
+
+  <!-- Aufgabe 1 -->
+  <div class="aufgabe-card">
+    <p class="aufg-nr">Aufgabe 1 von 2</p>
+    <p class="aufg-h">Markus, Außendienstmitarbeiter — 7.500 € Brutto/Monat</p>
+    <p>Markus, 35 Jahre, ledig, kinderlos, Steuerklasse I, Kirchenmitglied (kath.), Bayern. Bruttolohn: <strong>7.500 €/Monat</strong>. Beantworte folgende Punkte:</p>
+    <ol style="margin: 10px 0 14px; padding-left: 20px; line-height: 2.0;">
+      <li>Welche BBG(s) werden überschritten — und welche nicht? Was folgt daraus für die Beitragsberechnung?</li>
+      <li>Berechne den monatlichen SV-Abzug (AN-Anteil) getrennt nach RV, KV, PV und ALV.</li>
+      <li>Darf Markus in die PKV wechseln?</li>
+      <li>Ermittle die Jahres-Lohnsteuer (vereinfacht). Greift der Solidaritätszuschlag — und wenn ja, in welcher Zone?</li>
+    </ol>
+    <textarea id="ta1" class="open-textarea" placeholder="Deine Lösung hier eingeben …"></textarea>
+    <button class="btn-ki" onclick="copyKi(1, this)">&#129302; KI-Prompt kopieren</button>
+  </div>
+
+  <!-- Aufgabe 2 -->
+  <div class="aufgabe-card">
+    <p class="aufg-nr">Aufgabe 2 von 2</p>
+    <p class="aufg-h">Sandra, Teamleiterin — 5.900 € Brutto/Monat</p>
+    <p>Sandra, 42 Jahre, ledig, kinderlos, Steuerklasse I, konfessionslos, Bayern. Bruttolohn: <strong>5.900 €/Monat</strong> — sie liegt damit zwischen BBG KV/PV (5.812,50 €) und VPG (6.450 €). Analysiere ihre Lohnabrechnung:</p>
+    <ol style="margin: 10px 0 14px; padding-left: 20px; line-height: 2.0;">
+      <li>Welche Konsequenz hat es, dass Sandras Brutto über der BBG KV/PV, aber unter der VPG liegt?</li>
+      <li>Berechne den monatlichen KV-Beitrag (AN-Anteil, inkl. 1,0 % Zusatzbeitrag).</li>
+      <li>Darf Sandra in die PKV wechseln?</li>
+      <li>Schätze die Jahres-Lohnsteuer (vereinfacht) — fällt Soli an?</li>
+    </ol>
+    <textarea id="ta2" class="open-textarea" placeholder="Deine Lösung hier eingeben …"></textarea>
+    <button class="btn-ki" onclick="copyKi(2, this)">&#129302; KI-Prompt kopieren</button>
+  </div>
+
   <nav class="pager">
     <a class="prev" href="06-urlaub-entgelt.html"><span>Zurück</span><b>← 06 Urlaub &amp; Entgelt</b></a>
     <a class="next" href="lernseite.html"><span>Weiter</span><b>Lernen →</b></a>
   </nav>
 </div></main>
 <footer class="foot"><div class="wrap"><span class="mono">PuG · Zusatzmodul 07 — Lohnabzüge (Stand 2026 · Landkreis Regensburg / Bayern)</span></div></footer>
+<script>
+const PROMPTS = {
+  1: {
+    frage: 'Bewerte meine Lösung zu Aufgabe 1 (Markus, 7.500 €/Monat).',
+    aufgabe: [
+      'Aufgabe 1 – Markus, 7.500 €/Monat (Bayern, 2026, StK I, ledig, kinderlos, kath.)',
+      '',
+      'Fragen:',
+      '1. Welche BBGs werden überschritten?',
+      '2. SV-Abzug AN-Anteil je Versicherung (monatlich)?',
+      '3. PKV-Wechselrecht?',
+      '4. Jahres-Lohnsteuer (vereinfacht) und Soli-Zone?',
+      '',
+      'Eckwerte 2026:',
+      '• BBG KV/PV: 5.812,50 €/Mon. | BBG RV/ALV: 8.450 €/Mon. | VPG: 6.450 €/Mon.',
+      '• Beitragssätze AN: RV 9,3 %, KV 7,3 % + 1,0 % Zusatz = 8,3 %, PV 1,8 % + 0,6 % kinderlos = 2,4 %, ALV 1,3 %',
+      '• Soli-Freigrenze: 18.130 €/Jahr | Milderungszone bis 34.990 € LSt/Jahr | Formel: (LSt − 18.130) × 11,9 %',
+      '• Grundfreibetrag: 12.096 € | AN-Pauschbetrag: 1.230 €',
+      '',
+      'Musterlösung:',
+      '• BBG KV/PV (5.812,50 €) überschritten → Höchstbeitrag KV/PV',
+      '• BBG RV/ALV (8.450 €) NICHT überschritten (7.500 < 8.450) → voller Brutto als Basis',
+      '• VPG (6.450 €) überschritten → PKV-Wechsel grundsätzlich möglich',
+      '• RV AN: 7.500 × 9,3 % = 697,50 €',
+      '• KV AN: 5.812,50 × 8,3 % = 482,44 € (BBG-gedeckelt)',
+      '• PV AN: 5.812,50 × 2,4 % = 139,50 € (BBG-gedeckelt)',
+      '• ALV AN: 7.500 × 1,3 % = 97,50 €',
+      '• SV gesamt: 1.416,94 €/Mon.',
+      '• Jahresbrutto: 90.000 € | zvE: 90.000 − 12.096 − 1.230 = 76.674 €',
+      '• LSt (ca.): ~21.300 €/Jahr',
+      '• Soli: 21.300 > 18.130 → Milderungszone: (21.300 − 18.130) × 11,9 % ≈ 377 €/Jahr ≈ 31 €/Mon.',
+      '• KiSt: 8 % × 1.775 €/Mon. (1/12 der LSt) ≈ 142 €/Mon.'
+    ].join('\n')
+  },
+  2: {
+    frage: 'Bewerte meine Lösung zu Aufgabe 2 (Sandra, 5.900 €/Monat).',
+    aufgabe: [
+      'Aufgabe 2 – Sandra, 5.900 €/Monat (Bayern, 2026, StK I, ledig, kinderlos, konfessionslos)',
+      '',
+      'Fragen:',
+      '1. Konsequenz: Brutto über BBG KV/PV, aber unter VPG?',
+      '2. KV-Beitrag AN (inkl. 1,0 % Zusatz)?',
+      '3. PKV-Wechselrecht?',
+      '4. Jahres-Lohnsteuer (vereinfacht) und Soli?',
+      '',
+      'Eckwerte 2026:',
+      '• BBG KV/PV: 5.812,50 €/Mon. | BBG RV/ALV: 8.450 €/Mon. | VPG: 6.450 €/Mon.',
+      '• KV AN: 7,3 % + 1,0 % Zusatz = 8,3 % (auf Betrag bis BBG KV)',
+      '• Soli-Freigrenze: 18.130 €/Jahr',
+      '• Grundfreibetrag: 12.096 € | AN-Pauschbetrag: 1.230 €',
+      '',
+      'Musterlösung:',
+      '• Sandra überschreitet BBG KV/PV (5.812,50 €) → KV/PV nur auf Höchstbetrag 5.812,50 €',
+      '• Sandra liegt UNTER VPG (6.450 €) → kein PKV-Wechselrecht, GKV-Pflicht bleibt',
+      '• KV AN: 5.812,50 × 8,3 % = 482,44 €/Mon. (Höchstbeitrag)',
+      '• PV AN: 5.812,50 × 2,4 % = 139,50 €/Mon.',
+      '• RV AN: 5.900 × 9,3 % = 548,70 € | ALV AN: 5.900 × 1,3 % = 76,70 €',
+      '• SV gesamt: 1.247,34 €/Mon.',
+      '• Jahresbrutto: 70.800 € | zvE: 70.800 − 12.096 − 1.230 = 57.474 €',
+      '• LSt (ca.): ~13.700 €/Jahr',
+      '• Soli: 13.700 < 18.130 → kein Soli',
+      '• KiSt: 0 € (konfessionslos)'
+    ].join('\n')
+  }
+};
+
+function copyKi(nr, btn) {
+  const ta = document.getElementById('ta' + nr);
+  const p = PROMPTS[nr];
+  const antwort = ta.value.trim() || '(keine Antwort eingegeben)';
+  const text = p.frage + '\n\nMeine Antwort:\n' + antwort + '\n\n---\n' + p.aufgabe;
+  navigator.clipboard.writeText(text).then(function() {
+    btn.classList.add('copied');
+    btn.textContent = '✓ Kopiert!';
+    setTimeout(function() {
+      btn.classList.remove('copied');
+      btn.innerHTML = '&#129302; KI-Prompt kopieren';
+    }, 2200);
+  }).catch(function() {
+    window.prompt('Bitte manuell kopieren:', text);
+  });
+}
+</script>
 </body>
 </html>
