@@ -5,16 +5,19 @@
 (function () {
   "use strict";
 
-  var DURATION = 20 * 60;        // PARAMETER (Schritt 6): Sekunden, an den Umfang angepasst (16 Fragen ≈ 20 min)
+  var DURATION = 30 * 60;        // 30 Minuten: 16 MC-Fragen + 3 offene Aufgaben
   var remaining = DURATION;
   var timerId = null;
   var started = false;            // Test-Start-Gate: Timer läuft erst nach „Test starten"
   var submitted = false;
   var currentResultTs = null;     // Zeitstempel des laufenden Versuchs (für Finalisierung)
   var RESULT_KEY = "pug:probe-sa:results";
-  /* PARAMETER (Modul code-ki-bewertung): offene Aufgaben des Prüfungsteils.
-     []  ⇒ reiner Auswahlteil (kein offener Teil, kein Open-Panel). */
-  var OPEN_TASKS = [];
+  /* Offene Aufgaben (Freitext + Tabelle) — erscheinen als Abschnitt D ab Frage 17. */
+  var OPEN_TASKS = [
+    { id: "open-score-1", label: "Aufg. 17 – Solidaritätsprinzip", max: 2 },
+    { id: "open-score-2", label: "Aufg. 18 – BBG vs. VPG",         max: 3 },
+    { id: "open-score-3", label: "Aufg. 19 – Fünf-Säulen-Tabelle", max: 5 }
+  ];
   var OPEN_MAX = OPEN_TASKS.reduce(function (s, t) { return s + t.max; }, 0);
   var hasOpen = OPEN_TASKS.length > 0;
 
@@ -351,19 +354,56 @@
     } else { flash(fallback() ? "✓ kopiert" : "Kopieren fehlgeschlagen"); }
   }
 
+  /* Liest Tabellen-Eingaben aus und schreibt sie in die versteckte textarea des offenen Elements. */
+  function syncTableToTextarea(q) {
+    var textarea = q.querySelector(".code-input");
+    var tblInputs = Array.prototype.slice.call(q.querySelectorAll(".tbl-input"));
+    if (!tblInputs.length || !textarea) return;
+    var rowNames = ["Krankenversicherung","Unfallversicherung","Rentenversicherung",
+                    "Arbeitslosenversicherung","Pflegeversicherung"];
+    var rows = {};
+    tblInputs.forEach(function (inp) {
+      var r = inp.getAttribute("data-row");
+      var c = parseInt(inp.getAttribute("data-col"), 10);
+      if (!rows[r]) rows[r] = [];
+      rows[r][c] = inp.value.trim() || "(leer)";
+    });
+    var lines = ["Versicherung | Träger | Finanzierung | Leistung"];
+    Object.keys(rows).sort().forEach(function (ri) {
+      var row = rows[ri] || [];
+      lines.push(rowNames[parseInt(ri, 10)] + " | " + (row[0] || "(leer)") +
+                 " | " + (row[1] || "(leer)") + " | " + (row[2] || "(leer)"));
+    });
+    textarea.value = lines.join("\n");
+  }
+
+  function buildSinglePrompt(q, idx) {
+    syncTableToTextarea(q);
+    var tpl = q.querySelector("template.prompt-tpl");
+    var input = q.querySelector(".code-input");
+    var t = tpl ? tpl.innerHTML : "";
+    var code = input ? input.value : "";
+    if (!code.trim()) code = "(keine Eingabe)";
+    return "Du bist Lehrkraft. Bewerte diese Aufgabe aus meiner Probe-SA (Fach PuG) " +
+      "und vergib Punkte streng nach den genannten Kriterien. Nenne die erreichten Punkte mit kurzer Begründung.\n\n" +
+      "=== Aufgabe " + (idx + 17) + " ===\n" + t.replace(/\{\{CODE\}\}/g, code).trim();
+  }
+
   function buildOpenPrompt() {
     var blocks = [];
     document.querySelectorAll(".open-q").forEach(function (q, i) {
+      syncTableToTextarea(q);
       var tpl = q.querySelector("template.prompt-tpl");
       var input = q.querySelector(".code-input");
       var t = tpl ? tpl.innerHTML : "";
       var code = input ? input.value : "";
       if (!code.trim()) code = "(keine Eingabe)";
-      blocks.push("=== Aufgabe " + (i + 1) + " ===\n" + t.replace(/\{\{CODE\}\}/g, code).trim());
+      blocks.push("=== Aufgabe " + (i + 17) + " ===\n" + t.replace(/\{\{CODE\}\}/g, code).trim());
     });
     return "Du bist Lehrkraft. Bewerte den offenen Teil meiner Probe-SA (Fach PuG) " +
       "und vergib pro Aufgabe Punkte streng nach den jeweils genannten Kriterien. Nenne je Aufgabe " +
-      "die erreichten Punkte mit kurzer Begründung und am Ende die Gesamtpunktzahl des offenen Teils.\n\n" +
+      "die erreichten Punkte mit kurzer Begründung und am Ende die Gesamtpunktzahl des offenen Teils (max. " +
+      formatPoints(OPEN_MAX) + " P).\n\n" +
       blocks.join("\n\n");
   }
 
@@ -378,6 +418,17 @@
         btn.textContent = sol.hidden ? "Musterlösung anzeigen" : "Musterlösung ausblenden";
       });
     });
+    /* Einzel-Kopier-Buttons */
+    var openQs = Array.prototype.slice.call(document.querySelectorAll(".open-q"));
+    document.querySelectorAll(".q-copy-single").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var q = btn.closest(".open-q");
+        if (!q) return;
+        var idx = openQs.indexOf(q);
+        copyText(buildSinglePrompt(q, idx), btn);
+      });
+    });
+    /* Globaler Kopier-Button */
     var co = document.getElementById("copy-open");
     if (co) co.addEventListener("click", function () { copyText(buildOpenPrompt(), co); });
   }
