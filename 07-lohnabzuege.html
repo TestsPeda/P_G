@@ -131,6 +131,33 @@
     </div>
   </div>
 
+  <p style="font-weight: 700; margin: 24px 0 8px;">Reihenfolge der Abzüge: Brutto → Netto</p>
+  <div class="tbl-wrap">
+    <table class="ref">
+      <thead>
+        <tr><th>Schritt</th><th>Position</th><th>Bemessungsgrundlage</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Bruttolohn</strong></td><td>vereinbartes Monatsentgelt</td><td>—</td></tr>
+        <tr><td>−</td><td>Sozialversicherung AN (RV + KV + PV + ALV)</td><td>Bruttolohn bis zur jeweiligen BBG</td></tr>
+        <tr><td>−</td><td>Lohnsteuer</td><td>zu versteuerndes Einkommen (zvE), nach Steuerklasse</td></tr>
+        <tr><td>−</td><td>Solidaritätszuschlag</td><td>5,5 % der <em>Lohnsteuer</em> (nur über Freigrenze)</td></tr>
+        <tr><td>−</td><td>Kirchensteuer (nur Mitglieder)</td><td>8 % der <em>Lohnsteuer</em> (Bayern)</td></tr>
+        <tr class="bsp-netto"><td><strong>= Nettolohn</strong></td><td>Auszahlungsbetrag</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hint-tag" style="margin-top: 6px;">Soli und Kirchensteuer setzen auf der bereits berechneten Lohnsteuer auf — keine Lohnsteuer, also auch kein Soli und keine Kirchensteuer.</p>
+
+  <div class="note">
+    <p class="lbl">Merke: Drei typische Verwechslungen</p>
+    <ul style="margin: 4px 0 0; padding-left: 18px; line-height: 1.8;">
+      <li><span class="tag-mistake">Verwechslung</span> <strong>Sozialabgaben &ne; Steuern.</strong> SV-Beiträge (RV/KV/PV/ALV) fließen an die Sozialversicherungsträger und sichern konkrete Leistungen; die Lohnsteuer geht ans Finanzamt. Beides steht getrennt auf der Abrechnung.</li>
+      <li><span class="tag-mistake">Merke</span> <strong>Soli ist seit 2021 für ~90 % weg.</strong> Er fällt nur noch an, wenn die Jahres-Lohnsteuer die Freigrenze von 18.130 € überschreitet — für normale Gehälter also gar nicht. Den Soli pauschal von jedem Bruttolohn abzuziehen ist falsch.</li>
+      <li><span class="tag-mistake">Verwechslung</span> <strong>Soli und Kirchensteuer rechnen aus der Lohnsteuer, nicht aus dem Brutto.</strong> 8 % Kirchensteuer bedeuten 8 % der Lohnsteuer — nicht 8 % des Bruttolohns. Die Steuerklasse wirkt ebenfalls nur auf die Lohnsteuer, nicht auf die SV-Beiträge.</li>
+    </ul>
+  </div>
+
   <!-- ===================== SV-Tabelle ===================== -->
   <div class="sec-head" id="sv"><span class="ix">1</span><h2>Sozialversicherungsbeiträge 2026</h2></div>
   <p class="sec-sub">AN- und AG-Anteile auf einen Blick — mit Beitragsbemessungsgrenze je Versicherungszweig.</p>
